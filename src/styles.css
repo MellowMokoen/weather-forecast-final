@@ -57,3 +57,22 @@ li {
 #button {
   background-color: #207bbc;
 }
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  font-size: 10px;
+  color: #207bbc;
+  opacity: 0.6;
+}
+
+.weather-forecast-temp {
+  font-size: 12px;
+}
+
+.weather-forecast-temp-min {
+  opacity: 0.6;
+}
