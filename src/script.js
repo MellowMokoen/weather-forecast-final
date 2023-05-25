@@ -22,6 +22,41 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class = "row">`;
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="weather-forecast-date">${day}</div>
+        <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+          alt=""
+          width="40"
+        />
+        <div class="weather-forecast-temp">
+          <span class="weather-forecast-temp-max"> 10°</span>
+          <span class="weather-forecast-temp-min"> 23°</span>
+        </div>
+      </div>
+    
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+}
+
 function displayTemperature(response) {
   console.log(response);
   let temperatureElement = document.querySelector("#temperature");
@@ -43,6 +78,8 @@ function displayTemperature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconUrl}.png`
   );
+
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {
@@ -58,6 +95,8 @@ function searchBtn(event) {
 }
 
 search("Paris");
+
+displayForecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchBtn);
