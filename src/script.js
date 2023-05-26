@@ -22,7 +22,8 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class = "row">`;
@@ -55,6 +56,10 @@ function displayForecast() {
 
 function getForecast(coordinates) {
   console.log(coordinates);
+  let apiKey = "b8dd2969f5e20dbt7f4b36ad0o062aa3";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
@@ -95,8 +100,6 @@ function searchBtn(event) {
 }
 
 search("Paris");
-
-displayForecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchBtn);
